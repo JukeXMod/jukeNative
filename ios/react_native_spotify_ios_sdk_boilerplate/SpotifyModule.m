@@ -35,7 +35,7 @@ RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
    */
   
   // The spotify client id
-  [[SPTAuth defaultInstance] setClientID:@"[your-client-id]"];
+  [[SPTAuth defaultInstance] setClientID:@"32e30aa113a24db9809034cc16b7c018"];
   
   // The callback (called Custom URL Scheme in XCode project configuration)
   [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString:@"my-app-auth://spotify"]];

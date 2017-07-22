@@ -1,6 +1,7 @@
 #import <React/RCTBridgeModule.h>
 #import "React/RCTEventDispatcher.h"
 #import <SpotifyAuthentication/SpotifyAuthentication.h>
+#import <SpotifyAudioPlayback/SpotifyAudioPlayback.h>
 #import <SafariServices/SafariServices.h>
 
 @interface SpotifyModule : NSObject <RCTBridgeModule>

@@ -40,6 +40,7 @@
 		58DB10E51EA3D218000EC5A3 /* SpotifyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB10E41EA3D218000EC5A3 /* SpotifyModule.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		F07490F91F22970900D19E5E /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F07490F81F22970900D19E5E /* SpotifyAudioPlayback.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +265,7 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		F07490F81F22970900D19E5E /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = "../../ios-sdk/SpotifyAudioPlayback.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,9 +281,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58DB10DD1EA3D009000EC5A3 /* SystemConfiguration.framework in Frameworks */,
-				58DB10DF1EA3D14E000EC5A3 /* SpotifyAuthentication.framework in Frameworks */,
 				58DB10C21EA3D004000EC5A3 /* AVFoundation.framework in Frameworks */,
+				58DB10DF1EA3D14E000EC5A3 /* SpotifyAuthentication.framework in Frameworks */,
+				F07490F91F22970900D19E5E /* SpotifyAudioPlayback.framework in Frameworks */,
+				58DB10DD1EA3D009000EC5A3 /* SystemConfiguration.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -432,6 +435,7 @@
 		58DB10C01EA3D003000EC5A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F07490F81F22970900D19E5E /* SpotifyAudioPlayback.framework */,
 				58DB10DE1EA3D14E000EC5A3 /* SpotifyAuthentication.framework */,
 				58DB10DC1EA3D009000EC5A3 /* SystemConfiguration.framework */,
 				58DB10C11EA3D004000EC5A3 /* AVFoundation.framework */,
