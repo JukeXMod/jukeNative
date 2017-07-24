@@ -82,6 +82,10 @@ public class SpotifyAuthModule extends ReactContextBaseJavaModule implements Act
             reject(E_RUNTIME_ERROR, e);
         }
     }
+    @ReactMethod
+    public void hello(Promise p) {
+        p.resolve("This is andriod");
+    }
 
     private void resolve(AuthenticationResponse response) {
         WritableMap data = makeRNFriendly(response);
