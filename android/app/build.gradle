@@ -82,17 +82,6 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
-import com.android.build.gradle.tasks.PackageApplication
-task exclude_gnustl_shared(type: Delete) << {
-    def files = fileTree("${buildDir}/intermediates/exploded-aar/AndroidJSCore-2.2-pre1-release/jni/") {
-        include "**/libgnustl_shared.so"
-    }
-    files.each { it.delete() }
-}
-tasks.withType(PackageApplication) { pkgTask ->
-    pkgTask.dependsOn exclude_gnustl_shared
-}
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"

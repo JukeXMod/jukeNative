@@ -1,4 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+// This is a little hack I found online
 import com.android.build.gradle.tasks.PackageApplication
 task exclude_gnustl_shared(type: Delete) << {
     def files = fileTree("${buildDir}/intermediates/exploded-aar/AndroidJSCore-2.2-pre1-release/jni/") {
@@ -6,6 +8,7 @@ task exclude_gnustl_shared(type: Delete) << {
     }
     files.each { it.delete() }
 }
+// this is also part of the hack to prevent dulplicate error
 tasks.withType(PackageApplication) { pkgTask ->
     pkgTask.dependsOn exclude_gnustl_shared
 }
