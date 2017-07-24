@@ -82,6 +82,17 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+import com.android.build.gradle.tasks.PackageApplication
+task exclude_gnustl_shared(type: Delete) << {
+    def files = fileTree("${buildDir}/intermediates/exploded-aar/AndroidJSCore-2.2-pre1-release/jni/") {
+        include "**/libgnustl_shared.so"
+    }
+    files.each { it.delete() }
+}
+tasks.withType(PackageApplication) { pkgTask ->
+    pkgTask.dependsOn exclude_gnustl_shared
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -92,6 +103,7 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -126,9 +138,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.facebook.react:react-native:+'
+    // From node_modules
+    compile project(':spotify-auth')
 }
 
 // Run this once to be able to run the application with BUCK
