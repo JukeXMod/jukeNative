@@ -1,24 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Auth from "./native/spotifyPlay";
+import auth from "./native/spotifyModule";
 
 export default class App extends React.Component {
   constructor() {
     super();
-    this.hello = this.hello.bind(this);
-    this.hello();
+    auth.hello();
+    auth.launchAuth();
   }
-  /*
-    * This is just to prove concept
-   */
-  async hello() {
-    try {
-      let hello = await Auth.hello();
-      console.warn(hello);
-    } catch (e) {
-      console.error(e);
-  }
-}
   render() {
     return (
       <View style={styles.container}>
