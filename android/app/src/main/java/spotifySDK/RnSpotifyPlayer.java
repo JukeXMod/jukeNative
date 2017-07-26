@@ -15,8 +15,7 @@ import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
 public class MainActivity extends Activity implements
-        SpotifyPlayer.NotificationCallback, ConnectionStateCallback
-{
+        SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
 
     // TODO: Replace with your client ID
     private static final String CLIENT_ID = "yourclientid";
@@ -122,3 +121,4 @@ public class MainActivity extends Activity implements
     public void onConnectionMessage(String message) {
         Log.d("MainActivity", "Received connection message: " + message);
     }
+}
