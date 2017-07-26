@@ -82,6 +82,19 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+// This is a little hack I found online
+import com.android.build.gradle.tasks.PackageApplication
+task exclude_gnustl_shared(type: Delete) << {
+    def files = fileTree("${buildDir}/intermediates/exploded-aar/react_native_spotify_ios_sdk_boilerplate/spotify-player/unspecified/jni") {
+        include "**/libgnustl_shared.so"
+    }
+    files.each { it.delete() }
+}
+// this is also part of the hack to prevent dulplicate error
+tasks.withType(PackageApplication) { pkgTask ->
+    pkgTask.dependsOn exclude_gnustl_shared
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
