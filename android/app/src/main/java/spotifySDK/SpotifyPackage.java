@@ -13,11 +13,11 @@ import com.facebook.react.uimanager.ViewManager;
 import java.util.Collections;
 import java.util.List;
 
-public class SpotifyAuthPackage implements ReactPackage {
+public class SpotifyPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Collections.<NativeModule>singletonList(
-                new SpotifyAuthModule(reactContext)
+                new SpotifyModule(reactContext)
         );
     }
 

@@ -85,7 +85,7 @@ def enableProguardInReleaseBuilds = false
 // This is a little hack I found online
 import com.android.build.gradle.tasks.PackageApplication
 task exclude_gnustl_shared(type: Delete) << {
-    def files = fileTree("${buildDir}/intermediates/exploded-aar/react_native_spotify_ios_sdk_boilerplate/spotify-player/unspecified/jni") {
+    def files = fileTree("${buildDir}/intermediates/exploded-aar/react_native_spotify_ios_sdk_boilerplate/spotify-play/unspecified/jni") {
         include "**/libgnustl_shared.so"
     }
     files.each { it.delete() }

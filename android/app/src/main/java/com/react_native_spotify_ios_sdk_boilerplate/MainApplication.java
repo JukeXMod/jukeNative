@@ -11,8 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import spotifySDK.SpotifyAuthPackage;
-
+import spotifySDK.SpotifyPackage;
 //import spotifySDK.SpotifyAuthPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -27,7 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new SpotifyAuthPackage()
+          new SpotifyPackage()
       );
     }
   };
