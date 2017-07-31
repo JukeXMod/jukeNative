@@ -12,8 +12,6 @@ import {
   Text,
   View
 } from 'react-native';
-// import SomeTaskName from './native/backGroundTest';
-// AppRegistry.registerHeadlessTask('SomeTaskName', () => SomeTaskName);
 
 export default class react_native_spotify_ios_sdk_boilerplate extends Component {
   render() {
