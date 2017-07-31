@@ -54,4 +54,4 @@ fastlane/screenshots
 
 
 #Allow one Node Mod
-!node_modules/react-native-spotify-sdk #except this
+!node_modules/react-native-spotify-sdk/* #except this
