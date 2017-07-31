@@ -30,6 +30,9 @@ build/
 local.properties
 *.iml
 
+#Allow one Node Mod
+!node_modules/react-native-spotify-sdk/* #except this
+
 # node.js
 #
 node_modules/
@@ -51,7 +54,3 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
-
-
-#Allow one Node Mod
-!node_modules/react-native-spotify-sdk/* #except this
