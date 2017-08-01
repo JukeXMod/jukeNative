@@ -1,16 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import Play from "./components/Play";
-
+import Login from './components/Login';
+// import Play from './components/Play';
 
 export default class App extends React.Component {
   constructor() {
     super();
   }
+
   render() {
     return (
       <View style={styles.container}>
-      <Play />
+        <Login />
       </View>
     );
   }
@@ -22,5 +23,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });

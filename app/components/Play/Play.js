@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, Button, View} from 'react-native';
 import spotify from "../../native/spotifyModule";
 import styles from "./styles";
-import ProgressBar from "react-native-progress-bar";
+// import ProgressBar from "react-native-progress-bar";
 
 export default class Play extends Component {
   constructor() {
@@ -24,11 +24,6 @@ export default class Play extends Component {
           <Button title="Play" onPress={spotify.playUri}/>
         </View>
         </View>
-        <ProgressBar
-         fillStyle={{}}
-         backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
-         style={styles.progressBar}
-       />
        </View>
     );
   }
