@@ -1,4 +1,4 @@
 // this is where we will expose and export this componenet
-import Play from "./Play";
+import Avatar from "./Avatar";
 
-export default Play;
+export default Avatar;
