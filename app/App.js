@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Play from "./components/Play";
+import Host from "./components/Host";
 
 
 export default class App extends React.Component {
@@ -10,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Play />
+        <Host />
       </View>
     );
   }
