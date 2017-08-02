@@ -21,26 +21,22 @@ export default class ClientQueue extends React.Component {
           <View title="QUEUE" style={styles.content}>
 
             <FlatList style = {styles.list}
-          data={[
-            {key: 'Led'},
-            {key: 'PLACEHOLDERR'},
-            {key: 'PLACEHOLDERRR'},
-            {key: 'PLACEHOLDERRRR'},
-            {key: 'PLACEHOLDERRRRR klasdjfkl;adsjfkl;sadjflsajlk;dfl;sadjfkljs;la'},
-            {key: 'ABCj lksdfjas;dlkjflksadjfldksjl;kfjla;sjdfljsdkl;j'},
-            {key: 'DEF'},
-            {key: 'EFG'},
-          ]}
+          // data={[
+          //   {key: 'Led'},
+          //   {key: 'PLACEHOLDERR'},
+          //   {key: 'PLACEHOLDERRR'},
+          //   {key: 'PLACEHOLDERRRR'},
+          //   {key: 'PLACEHOLDERRRRR klasdjfkl;adsjfkl;sadjflsajlk;dfl;sadjfkljs;la'},
+          //   {key: 'ABCj lksdfjas;dlkjflksadjfldksjl;kfjla;sjdfljsdkl;j'},
+          //   {key: 'DEF'},
+          //   {key: 'EFG'},
+          // ]}
           renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
         />
-        <Play />
+        <Play style ={styles.play} />
           </View>
 
           <View title="Completed" style={styles.content}>
-
-            <Text style={styles.text}>
-                The Beatles Let it be
-            </Text>
           </View>
 
         </Toolbar>
@@ -75,5 +71,8 @@ export const styles = StyleSheet.create({
   },
   toolbar:{
     backgroundColor:'transparent'
+  },
+  play:{
+    top: 150,
   }
 });
