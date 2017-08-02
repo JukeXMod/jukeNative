@@ -6,6 +6,7 @@ import { StyleSheet, AppRegistry, Text, View, Image, TouchableOpacity, Dimension
 
 
 export default class Host extends Component {
+  
   render() {
     return (
 
