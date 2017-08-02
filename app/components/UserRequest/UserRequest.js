@@ -1,9 +1,9 @@
 // Request Component
 
 import React, { Component } from 'react';
-import { StyleSheet, AppRegistry, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, AppRegistry, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-//import ClientQueue from '../../Views/ClientQueue';
+import ClientQueue from '../../Views/ClientQueue';
 
 
 export default class UserRequest extends Component {
@@ -14,9 +14,9 @@ export default class UserRequest extends Component {
     	<View style = {styles.view}>
       <Text style = {styles.request}> Request </Text>
       <View style = {styles.viewButton}>
-        <TouchableOpacity /*onPress={() => this.props.nav.navigate('ClientQueueView')}*/>
+        <TouchableOpacity style = {styles.turntable} onPress={() => this.props.nav.navigate('ClientQueueView')}>
           <Image style = {styles.turntable}
-                 source={require('../../images/vinyl2.png')}
+                 source={require('../../images/red.png')}
                  resizeMode="contain"
           />
         </TouchableOpacity>
@@ -26,21 +26,24 @@ export default class UserRequest extends Component {
   }
 }
 
-// const AppNavigator = StackNavigator({
-//   ClientQueueView: { screen: ClientQueue}
-// });
-
+const AppNavigator = StackNavigator({
+  ClientQueueView: { screen: ClientQueue}
+});
+let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
   view: {
   	flex: 1,
     justifyContent: 'flex-start',
+    width: width,
+    height: height,
   },
   request: {
-    color: '#b22222',
-    fontSize: 50,
+    color: '#ff0000',
+    fontSize: 70,
     fontWeight: 'bold',
-    alignItems: 'center',
     backgroundColor: 'transparent',
+    textAlign: 'center',
+    bottom: 30,
 
   },
 
@@ -51,11 +54,11 @@ export const styles = StyleSheet.create({
   },
 
   turntable: {
-        height: 150,
-    width: 150,
+    height: 150,
+    bottom: 0,
     alignItems: 'center',
     backgroundColor: 'transparent',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
 
   }
 });
