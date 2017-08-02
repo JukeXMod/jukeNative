@@ -9,6 +9,7 @@ import ProgressBar from "react-native-progress-bar";
 export default class Play extends Component {
   constructor() {
     super();
+    spotify.launchLogin();
     this.state = {
       playing: spotify.isPlaying
     };

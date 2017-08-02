@@ -7,6 +7,10 @@ export default class Spotify {
     this.pauseResume = this.pauseResume.bind(this);
     this.playUri = this.playUri.bind(this);
     this.isPlaying = this.isPlaying.bind(this);
+    this.queue = this.queue.bind(this);
+    this.setNextTrack = this.setNextTrack.bind(this);
+    this.getNextTrack = this.getNextTrack.bind(this);
+
   }
 
   static async setup() {
@@ -37,7 +41,7 @@ export default class Spotify {
         if(token) {
           let hi = await native.setAccessToken(token);
           console.warn(hi);
-          this.isPlaying();
+
         }
         else {
           console.warn("Token was not returned");
@@ -59,11 +63,11 @@ export default class Spotify {
     }
   }
 
-  static async queue(addUri) {
+  static async queue(songUri) {
     try {
-       let complete = await native.queue(addUri);
-       if(complete === "Success") {
-         // update the
+        let complete = await native.queue(songUri);
+        if(complete === "Success") {
+          console.log(complete);
        }
        else{
          console.warn("Error occured queueing song");
@@ -75,9 +79,18 @@ export default class Spotify {
 
   static async getNextTrack() {
     try {
-       let nextTrack = await native.getNextTrack();
-       if(nextTrack === ""){
-         console.warn("No track queued");
+      songsList = [
+        "spotify:track:5ELRkzdzz0HvGpMDlfZHkV",
+        "spotify:track:0Ph6L4l8dYUuXFmb71Ajnd",
+        "spotify:track:2HNZxbvFvasRtlOJ9M6DgR",
+        "spotify:track:6N5DRCQUSXT1qQqmqsO92B",
+        "spotify:track:0f37VQs969vZUL4gVfHRV9",
+        "spotify:track:4fK6E2UywZTJIa5kWnCD6x",
+        "spotify:track:78ZzF9pK3foniEnK64XzX5"
+      ];
+       if(songsList.length > 0) {
+         let song = songsList.pop();
+         native.playUri(song);
        }
     } catch (e) {
       console.error(e);

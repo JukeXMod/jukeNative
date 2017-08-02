@@ -2,7 +2,8 @@
 
 import React, { Component } from "react";
 import { StyleSheet, AppRegistry, Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
-// import Button from "react-native-button";
+import { StackNavigator } from 'react-navigation';
+import HostQueueView from '../../Views/HostQueueView';
 
 
 export default class Host extends Component {
@@ -12,7 +13,7 @@ export default class Host extends Component {
     	<View style = {styles.view}>
       <Text style = {styles.host}> Host </Text>
       <View style = {styles.viewButton}>
-        <TouchableOpacity style={styles.jukebox}>
+        <TouchableOpacity style={styles.jukebox} onPress={() => this.props.nav.navigate('HostQueueView')}>
           <Image style={styles.jukebox}
             resizeMode="stretch"
             source={require('../../images/jukebox1.png')} />
