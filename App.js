@@ -8,7 +8,6 @@ import HostQueueView from './app/Views/HostQueueView';
 const AppNavigator = StackNavigator({
   HostClientView: { screen: HostClient },
   ClientQueueView: { screen: ClientQueue },
-<<<<<<< HEAD
   HostQueueView: { screen: HostQueueView }
 });
 
