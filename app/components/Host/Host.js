@@ -1,17 +1,18 @@
 // Host Component
 
 import React, { Component } from "react";
-import { StyleSheet, AppRegistry, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, AppRegistry, Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
 // import Button from "react-native-button";
 
 
 export default class Host extends Component {
   render() {
     return (
+
     	<View style = {styles.view}>
       <Text style = {styles.host}> Host </Text>
       <View style = {styles.viewButton}>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.jukebox}>
           <Image style={styles.jukebox}
             resizeMode="stretch"
             source={require('../../images/jukebox1.png')} />
@@ -22,35 +23,31 @@ export default class Host extends Component {
     );
   }
 }
-
+let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
   view: {
   	flex: 1,
     justifyContent: 'flex-start',
+
   },
 
   host: {
-    color: '#b22222',
-    fontSize: 50,
+    color: '#ff0000',
+    fontSize: 70,
     fontWeight: 'bold',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
+    textAlign: 'center',
+    top: 10,
+
 
   },
 
-  viewButton: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-
-  },
 
   jukebox: {
-    height: 150,
-    width: 150,
-    alignItems: 'center',
+    height: 200,
+    width: 230,
     backgroundColor: 'transparent',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
 
 
 

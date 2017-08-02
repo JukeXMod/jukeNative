@@ -3,7 +3,7 @@ import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList,
 // import SpotifySoundCloud from '../components/SpotifySoundCloud/SpotifySoundCloud.js';
 import Toolbar from '../../components/Toolbar/Toolbar.js';
 import { StackNavigator } from 'react-navigation';
-
+import Searchbar from '../../components/Searchbar';
 
 
 
@@ -11,6 +11,7 @@ export default class ClientQueue extends React.Component {
 
   render() {
     return (
+        <Image style = {styles.image} source={require('../../images/new.jpg')} resizeMode="cover">
 
         <View style = {styles.container}>
         <Toolbar style = {styles.toolbar}>
@@ -42,7 +43,7 @@ export default class ClientQueue extends React.Component {
 
         </Toolbar>
         </View>
-     
+      </Image>
     );
   }
 }
@@ -57,6 +58,19 @@ export const styles = StyleSheet.create({
     backgroundColor:'transparent',
     
   },
+  image: {
+    height: height,
+    width: width,
+  },
+
+  list: {
+    backgroundColor: 'white',
+    marginTop: 20,
+  },
+  text: {
+    backgroundColor: 'white',
+    marginTop: 20,
+  }
   
 
 });
