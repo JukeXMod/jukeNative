@@ -13,7 +13,8 @@ export default class Host extends Component {
       <View style = {styles.viewButton}>
         <TouchableOpacity>
           <Image style={styles.jukebox}
-            resizeMode="stretch"                                source={require('../../images/jukebox1.png')} />
+            resizeMode="stretch"
+            source={require('../../images/jukebox1.png')} />
         </TouchableOpacity>
       </View>
 
