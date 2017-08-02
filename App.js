@@ -8,10 +8,19 @@ import HostQueueView from './app/Views/HostQueueView';
 const AppNavigator = StackNavigator({
   HostClientView: { screen: HostClient },
   ClientQueueView: { screen: ClientQueue },
+<<<<<<< HEAD
   HostQueueView: { screen: HostQueueView }
 });
 
+
+
 export default class App extends React.Component {
+
+static navigationOptions = {
+        title: "My Header Title",
+        headerTintColor: "blue",
+    };
+
   constructor() {
   super();
   }
@@ -20,7 +29,11 @@ export default class App extends React.Component {
     return (
         <Image style = {styles.image} source={require('./app/images/new.jpg')} resizeMode="cover">
         <View>
+
+          <Image style = {styles.image} source={require('./app/images/new.jpg')} resizeMode="cover">
+
           <AppNavigator style = {styles.navigator} ref={nav => { this.navigator = nav; }} />
+          </Image>
           <Text> </Text>
         </View>
       </Image>
@@ -44,5 +57,7 @@ export const styles = StyleSheet.create({
   },
   navigator: {
     width: width,
-  }
+
+    backgroundColor: 'rgba(0,0,0,0.5)'
+\  }
 });

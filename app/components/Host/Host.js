@@ -6,7 +6,10 @@ import { StackNavigator } from 'react-navigation';
 import HostQueueView from '../../Views/HostQueueView';
 
 
+
+
 export default class Host extends Component {
+  
   render() {
     return (
 
@@ -14,6 +17,7 @@ export default class Host extends Component {
       <Text style = {styles.host}> Host </Text>
       <View style = {styles.viewButton}>
         <TouchableOpacity style={styles.jukebox} onPress={() => this.props.nav.navigate('HostQueueView')}>
+
           <Image style={styles.jukebox}
             resizeMode="stretch"
             source={require('../../images/jukebox1.png')} />
