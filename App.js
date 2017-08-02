@@ -58,5 +58,5 @@ export const styles = StyleSheet.create({
     width: width,
 
     backgroundColor: 'rgba(0,0,0,0.5)'
-\  }
+  }
 });

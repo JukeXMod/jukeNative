@@ -1,7 +1,7 @@
 // this is where all the style relating to this componenet will go
 import { StyleSheet, Dimensions } from "react-native";
 
-let { width } = Dimensions.get("window");
+let { width, height } = Dimensions.get("window");
 export default styles = StyleSheet.create({
   playBox: {
     flexDirection:"row",
@@ -10,7 +10,8 @@ export default styles = StyleSheet.create({
     paddingTop:20,
     backgroundColor: "skyblue",
     paddingLeft:80,
-    paddingRight:40
+    paddingRight:40,
+    marginBottom: -325,
   },
   viewStyle: {
     flex: 1,
