@@ -90,7 +90,7 @@ export default class Spotify {
       ];
        if(songsList.length > 0) {
          let song = songsList.pop();
-         native.playUri(song);
+         await native.playUri(song);
        }
     } catch (e) {
       console.error(e);
