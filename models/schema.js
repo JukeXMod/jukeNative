@@ -19,7 +19,18 @@ let QueueSchema = mongoose.Schema({
     trackUri: String
   }]
 });
-QueueSchema.statics.createUser = function(user){
+QueueSchema.statics.createUser = function(user) {
+  this.findOne({userId:user.userId})
+  .then(function(result) {
+    if(result.length > 0){
+      res.status(200)
+      .send(result)
+    }
+  })
+  .catch(function(){
+    res.status(500)
+    .send("Error occured for lookup");
+  });
   return this.create(user);
 }
 
@@ -31,8 +42,8 @@ QueueSchema.statics.addToQueue = function(queueId,queueSong){
   return this.update({queueId:queueId},{$push:{playlist:queueSong}});
 };
 
-QueueSchema.statics.removeFromQueue = function(){
-  return this.findOneAndRemove(queue);
+QueueSchema.statics.removeFromQueue = function(queueId, trackUri){
+  return this.update({queueId:queueId},{$pull:{playlist:{trackUri:queueSong.trackUri}}});
 };
 
 QueueSchema.plugin(autoIncrement.plugin, { model: "Queue", field: "queueId" });

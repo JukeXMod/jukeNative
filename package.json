@@ -21,7 +21,8 @@
     "react-native-progress-bar": "^0.1.2",
     "react-native-spotify-sdk": "^1.1.4",
     "react-native-vector-icons": "^4.3.0",
-    "react-navigation": "^1.0.0-beta.11"
+    "react-navigation": "^1.0.0-beta.11",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.24.1",
