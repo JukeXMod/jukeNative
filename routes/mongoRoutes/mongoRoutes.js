@@ -19,15 +19,22 @@ io.on('connection', function(socket){
 router.post('/createuser', function(req, res) {
   let userName = req.body.userName;
   let userId = req.body.userId;
-  QueueSchema.createUser({userId: userId, userName: userName})
-    .then(function(results){
+  QueueSchema.findOne(query)
+  .then(function(result) {
+    if(result.length > 0){
       res.status(200)
-      .send(results)
-    })
-    .catch(function(error){
-      res.status(500)
-      .send(error)
-    });
+      .send(result)
+    }
+    QueueSchema.createUser({userId: userId, userName: userName})
+      .then(function(results){
+        res.status(200)
+        .send(results)
+      })
+  })
+  .catch(function(error){
+    res.status(500)
+    .send(error)
+  });
 });
 
 router.post('/addsong', function(req, res) {
@@ -49,6 +56,7 @@ router.post('/addsong', function(req, res) {
      artistPic: artistPic,
      trackUri: trackUri
    };
+   QueueSchema.findOne()
   QueueSchema.addToQueue(queueId,addSong)
   .then(function(results) {
     res.status(200)
@@ -63,25 +71,27 @@ router.post('/addsong', function(req, res) {
 router.post("/removesong", function(req, res) {
   let queueId = req.body.queueId;
   let trackUri = req.body.trackUri;
-  console.log(req.body);
   if(!queueId && !trackUri) {
     res.status(422)
     .send("missing body params");
   }
-  QueueSchema.removeFromQueue(queueId,trackUri)
-  .then(function(results) {
-    res.status(200)
-    .send(results)
-  })
+    QueueSchema.removeFromQueue(queueId,trackUri)
+    .then(function(results) {
+      console.log();
+      res.status(200)
+      .send(results)
+    })
   .catch(function(error) {
     res.status(500)
     .send(error)
   });
 });
 
-router.post("getQueue",function(req,res) {
+router.post("/getqueue",function(req,res) {
+  let queueId = req.body.queueId;
   QueueSchema.getQueue(queueId)
   .then(function(results) {
+    console.log(results);
     res.status(200)
     .send(results)
   })
