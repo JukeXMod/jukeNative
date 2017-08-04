@@ -30,18 +30,21 @@ export default class Spotify {
     }
   }
 
-
   static async launchLogin() {
     try {
       let complete = await this.setup();
       console.warn(complete);
       if(complete === "Success") {
-        let { token } = await native.launchLogin();
-        console.warn(token);
+        let { token, code } = await native.launchLogin();
+        console.warn("code"+code);
         if(token) {
-          let hi = await native.setAccessToken(token);
-          console.warn(hi);
-
+          let complete = await native.setAccessToken(token);
+          try {
+            await AsyncStorage.setItem("code",code);
+            await AsyncStorage.setItem("token",token);
+          } catch (error) {
+            console.warn(error);
+          }
         }
         else {
           console.warn("Token was not returned");

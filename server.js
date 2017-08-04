@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
-app.use('/auth',Oauth);
-app.use('/db', Mongo);
+  app.use('/auth',Oauth);
+  app.use('/db', Mongo);
 });
 
 mongoose.connect('mongodb://localhost/queue');

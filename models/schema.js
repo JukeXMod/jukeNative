@@ -34,8 +34,8 @@ QueueSchema.statics.createUser = function(user) {
   return this.create(user);
 }
 
-QueueSchema.statics.getQueue = function(){
-  return this.find(queue);
+QueueSchema.statics.getQueue = function(queueId){
+  return this.findOne({queueId:queueId});
 };
 
 QueueSchema.statics.addToQueue = function(queueId,queueSong){
