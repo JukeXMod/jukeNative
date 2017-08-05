@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, Button, View , Image, TouchableOpacity } from 'react-native';
 import spotify from "../../native/spotifyModule";
 import styles from "./styles";
-import ProgressBar from "react-native-progress-bar";
 
 export default class Play extends Component {
   constructor() {

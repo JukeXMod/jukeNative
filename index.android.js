@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import App from "./App.js";
 import {
@@ -16,9 +10,7 @@ import {
 export default class react_native_spotify_ios_sdk_boilerplate extends Component {
   render() {
     return (
-      <View style={styles.container}>
         <App />
-      </View>
     );
   }
 }

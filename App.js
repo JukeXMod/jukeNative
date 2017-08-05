@@ -9,7 +9,7 @@ const AppNavigator = StackNavigator({
   HostClientView: { screen: HostClient },
   ClientQueueView: { screen: ClientQueue },
   HostQueueView: { screen: HostQueueView }
-});
+},{initialRouteName:"HostClientView"});
 
 
 
@@ -33,7 +33,6 @@ static navigationOptions = {
 
           <AppNavigator style = {styles.navigator} ref={nav => { this.navigator = nav; }} />
           </Image>
-          <Text> </Text>
         </View>
       </Image>
     );

@@ -5,8 +5,6 @@ import Toolbar from '../../components/Toolbar/Toolbar.js';
 import { StackNavigator } from 'react-navigation';
 import Searchbar from '../../components/Searchbar';
 
-
-
 export default class ClientQueue extends React.Component {
 
   render() {
@@ -17,7 +15,7 @@ export default class ClientQueue extends React.Component {
         <Toolbar style = {styles.toolbar}>
 
           <View title="QUEUE" style={styles.content}>
-           
+
             <FlatList style = {styles.list}
           data={[
             {key: 'PLACEHOLDER'},
@@ -34,7 +32,7 @@ export default class ClientQueue extends React.Component {
           </View>
 
           <View title="ADD SONG" style={styles.content}>
-            
+
             <Text style={styles.text}>
             TEST TEST TEST TEST TEST TEST TEST TEST
               </Text>
@@ -56,7 +54,7 @@ export const styles = StyleSheet.create({
     width: width,
     height: height,
     backgroundColor:'transparent',
-    
+
   },
   image: {
     height: height,
@@ -71,6 +69,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 20,
   }
-  
+
 
 });

@@ -4,12 +4,9 @@ import Host from '../../components/Host/Host.js';
 import UserRequest from '../../components/UserRequest/UserRequest.js';
 import { StackNavigator } from 'react-navigation';
 
-
- 
-
 export default class HostClient extends React.Component {
 
-        
+
   render() {
 
     return (
@@ -24,18 +21,18 @@ export default class HostClient extends React.Component {
 }
 
 
-  
+
 let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
-  container: {
-flex: 1,
-justifyContent: 'center',
-alignItems: 'center',
-backgroundColor: 'transparent',
-  },
-  image: {
-    height: height,
-    width: width,
-  }
+//   container: {
+// flex: 1,
+// justifyContent: 'center',
+// alignItems: 'center',
+// backgroundColor: 'transparent',
+//   },
+//   image: {
+//     height: height,
+//     width: width,
+//   }
 
 });
