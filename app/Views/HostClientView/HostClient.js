@@ -3,7 +3,6 @@ import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList,
 import Host from '../../components/Host/Host.js';
 import UserRequest from '../../components/UserRequest/UserRequest.js';
 import { StackNavigator } from 'react-navigation';
-import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class HostClient extends React.Component {
 
@@ -22,9 +21,6 @@ export default class HostClient extends React.Component {
   }
 }
 
-
-
-let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
   // container: {
   //   flex: 1,

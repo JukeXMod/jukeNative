@@ -1,4 +1,4 @@
 // this is where we will expose and export this componenet
-import HostClient from "./HostClient.js";
+import ClientLoginView from "./ClientLoginView.js";
 
-export default HostClient;
+export default ClientLoginView;
