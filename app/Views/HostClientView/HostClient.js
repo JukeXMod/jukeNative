@@ -4,38 +4,33 @@ import Host from '../../components/Host/Host.js';
 import UserRequest from '../../components/UserRequest/UserRequest.js';
 import { StackNavigator } from 'react-navigation';
 
-
- 
-
 export default class HostClient extends React.Component {
 
-        
+  static navigationOptions = {
+   header:null
+ }
+
   render() {
 
     return (
-        <Image style = {styles.image} source={require('../../images/new.jpg')} resizeMode="cover">
-        <View style = {styles.container}>
+      <View style={styles.buttonTest}>
           <Host nav={this.props.navigation}/>
-          <UserRequest style = {styles.userRequest} nav={this.props.navigation}/>
-        </View>
-        </Image>
+          <UserRequest nav={this.props.navigation}/>
+      </View>
     );
   }
 }
 
-
-  
-let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
-  container: {
-flex: 1,
-justifyContent: 'center',
-alignItems: 'center',
-backgroundColor: 'transparent',
-  },
-  image: {
-    height: height,
-    width: width,
+  // container: {
+  //   flex: 1,
+  //   marginRight:400
+  // },
+  buttonTest: {
+    flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 50
   }
-
 });

@@ -1,76 +1,64 @@
 import React from 'react';
-import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
-// import SpotifySoundCloud from '../components/SpotifySoundCloud/SpotifySoundCloud.js';
-import Toolbar from '../../components/Toolbar/Toolbar.js';
-import { StackNavigator } from 'react-navigation';
-import Searchbar from '../../components/Searchbar';
-
-
+import { StyleSheet, Text, AppRegistry, View, Image} from 'react-native';
+import {Button} from 'react-native-elements';
+import { TabNavigator} from 'react-navigation';
 
 export default class ClientQueue extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require("../../images/disc.png")}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
 
   render() {
     return (
-        <Image style = {styles.image} source={require('../../images/new.jpg')} resizeMode="cover">
-
-        <View style = {styles.container}>
-        <Toolbar style = {styles.toolbar}>
-
-          <View title="QUEUE" style={styles.content}>
-           
-            <FlatList style = {styles.list}
-          data={[
-            {key: 'PLACEHOLDER'},
-            {key: 'PLACEHOLDERR'},
-            {key: 'PLACEHOLDERRR'},
-            {key: 'PLACEHOLDERRRR'},
-            {key: 'PLACEHOLDERRRRR klasdjfkl;adsjfkl;sadjflsajlk;dfl;sadjfkljs;la'},
-            {key: 'ABCj lksdfjas;dlkjflksadjfldksjl;kfjla;sjdfljsdkl;j'},
-            {key: 'DEF'},
-            {key: 'EFG'},
-          ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-        />
-          </View>
-
-          <View title="ADD SONG" style={styles.content}>
-            
-            <Text style={styles.text}>
-            TEST TEST TEST TEST TEST TEST TEST TEST
-              </Text>
-          </View>
-
-
-        </Toolbar>
-        </View>
-      </Image>
+      <Button
+        onPress={() => this.props.navigation.navigate('Home')}
+        title="Go to notifications"
+      />
     );
   }
 }
-let {width, height} = Dimensions.get('window')
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: width,
-    height: height,
-    backgroundColor:'transparent',
-    
-  },
-  image: {
-    height: height,
-    width: width,
-  },
 
-  list: {
-    backgroundColor: 'white',
-    marginTop: 20,
-  },
-  text: {
-    backgroundColor: 'white',
-    marginTop: 20,
+class MyNotificationsScreen extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'Notifications',
+    tabBarIcon: ({ tintColor }) => (
+      <Image
+        source={require("../../images/disc.png")}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.goBack()}
+        title="Go back home"
+      />
+    );
   }
-  
+}
 
+const styles = StyleSheet.create({
+  icon: {
+    width: 26,
+    height: 26,
+  },
+});
+
+const MyApp = TabNavigator({
+  Notifications: {
+    screen: MyNotificationsScreen,
+  }
+}, {
+  tabBarOptions: {
+    activeTintColor: '#e91e63',
+  },
 });

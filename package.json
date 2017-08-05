@@ -17,9 +17,10 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.3",
     "react-native-button": "^2.1.0",
+    "react-native-easy-grid": "^0.1.13",
     "react-native-elements": "^0.15.0",
-    "react-native-progress-bar": "^0.1.2",
     "react-native-spotify-sdk": "^1.1.4",
+    "react-native-tab-navigator": "^0.3.3",
     "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11",
     "socket.io": "^2.0.3"
