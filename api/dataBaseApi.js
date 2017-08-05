@@ -21,5 +21,10 @@ export default databaseCalls = {
       queueId:addSong.queueId,
       trackUri:addSong.trackUri
     })
+  },
+  getSongs:function(queueId) {
+    return axios.post("/db/getqueue", {
+      queueId:addSong.queueId
+    })
   }
 }

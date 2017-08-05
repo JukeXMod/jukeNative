@@ -10,7 +10,7 @@ const AppNavigator = StackNavigator({
   HostClientView: { screen: HostClient },
   ClientQueueView: { screen: ClientQueue },
   HostQueueView: { screen: HostQueueView },
-  ClientLoginView: { screen: ClientLoginView }
+  ClientLoginView: { screen: ClientLoginView, path: "people/:queueid/:username", }
 },{initialRouteName:"HostClientView"});
 
 export default class App extends React.Component {
