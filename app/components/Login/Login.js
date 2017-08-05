@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppRegistry from 'react';
 import { 	StyleSheet,
+			WebView,
 			Image,
  			Linking,
  			Platform,
@@ -42,15 +43,15 @@ export default class Login extends Component {
 		}
 	};
 
-	loginWithFacebook = () => this.openURL('http://localhost:8080/auth/facebook');
+	loginWithFacebook = () => this.openURL('http://10.0.2.2:8080/auth/facebook');
 
-	loginWithGoogle = () => this.openURL('http://localhost:8080/auth/google');
+	loginWithGoogle = () => this.openURL('http://10.0.2.2:8080/auth/google');
 
 	openURL = (url) => {
 		if(Platform.OS === 'ios') {
 			SafariView.show({
 				url: url,
-				fromBottom: true,
+				fromBottom: true
 			});
 		} else {
 			Linking.openURL(url);

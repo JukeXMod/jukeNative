@@ -9,7 +9,7 @@ export default iconStyles = StyleSheet.create({
 export default styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#FFF',
+		backgroundColor: 'red',
 
 	},
 	content: {

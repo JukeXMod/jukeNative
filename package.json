@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+     "server": "nodemon server.js --exec babel-node --presets es2015,stage-2"
   },
   "dependencies": {
     "babel-loader": "^7.1.1",

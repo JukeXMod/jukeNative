@@ -36,10 +36,6 @@ passport.deserializeUser((user, done) => {
 done(null, user)
 });
 
-//Initialize the server
-
-//Initialize Passport
-
 //This will set up FB authentication routes
 router.get('/facebook', passport.authenticate('facebook'));
 
