@@ -1,91 +1,104 @@
 
 import express from 'express';
 import QueueSchema from '../../models/schema';
+import httpImport from "http";
+import socket from "socket.io";
 
-
+let http = httpImport.Server();
+let io = socket(http);
 let router = express.Router();
 let trackId = '';
 
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
-router.post('/createUser', function(req, res) {
-let userName = req.body.userName;
-let userId = req.body.userId;
-console.log(req.body);
-  QueueSchema.createUser({userId: userId, userName: userName})
-    .then(function(results){
+router.post('/createuser', function(req, res) {
+  let userName = req.body.userName;
+  let userId = req.body.userId;
+  QueueSchema.findOne(query)
+  .then(function(result) {
+    if(result.length > 0){
+      res.status(200)
+      .send(result)
+    }
+    QueueSchema.createUser({userId: userId, userName: userName})
+      .then(function(results){
+        res.status(200)
+        .send(results)
+      })
+  })
+  .catch(function(error){
+    res.status(500)
+    .send(error)
+  });
+});
+
+router.post('/addsong', function(req, res) {
+  let queueId = req.body.queueId;
+  let songName = req.body.songName;
+  let albumName = req.body.albumName;
+  let artistName = req.body.artistName;
+  let artistPic = req.body.artistPic;
+  let trackUri = req.body.trackUri;
+  console.log(req.body);
+  if(!queueId && !trackUri) {
+    res.status(422)
+    .send("missing body params");
+  }
+  let addSong = {
+     songName: songName,
+     albumName: albumName,
+     artistName: artistName,
+     artistPic: artistPic,
+     trackUri: trackUri
+   };
+   QueueSchema.findOne()
+  QueueSchema.addToQueue(queueId,addSong)
+  .then(function(results) {
+    res.status(200)
+    .send(results)
+  })
+  .catch(function(error) {
+    res.status(500)
+    .send(error)
+  });
+});
+
+router.post("/removesong", function(req, res) {
+  let queueId = req.body.queueId;
+  let trackUri = req.body.trackUri;
+  if(!queueId && !trackUri) {
+    res.status(422)
+    .send("missing body params");
+  }
+    QueueSchema.removeFromQueue(queueId,trackUri)
+    .then(function(results) {
+      console.log();
       res.status(200)
       .send(results)
     })
-    .catch(function(error){
-      res.status(500)
-      .send(error)
-    });
+  .catch(function(error) {
+    res.status(500)
+    .send(error)
+  });
 });
 
-router.get('/getQueue', function(req, res) {
-  let userId = req.body.userId;
-  let playlistId = req.body.playlistId;
-  console.log(req.body);
-  QueueSchema.getQueue({userId: user_id, playlistId: playlist_id})
-    .then(function(results){
-      res.status(200)
-        .send('fuck you node ');
-    })
-    .catch(function(error){
-      res.status(500)
-        .send(error)
-    });
-});
-
-router.post('/createQueue', function(req, res) {
-  let userId = req.body.userId;
+router.post("/getqueue",function(req,res) {
   let queueId = req.body.queueId;
-  let playlistName = req.body.playlistName;
-  let playlistId = req.body.playlist.playlistId;
-  let songId = req.body.playlist.songId;
-  let songName = req.body.playlist.songName;
-  let albumName = req.body.playlist.albumName;
-  let artistName = req.body.playlist.artistName;
-    QueueSchema.createQueue({userId: userId, queueId: queueId, playlistName: playlistName, playlistId: playlistId, songId: songId, songName: songName, albumName: albumName, artistName: artistName})
-      .then(function(results){
-        res.status(200)
-          .send(results);
-      })
-      .catch(function(error){
-        res.status(500)
-          .send(error)
-      });
+  QueueSchema.getQueue(queueId)
+  .then(function(results) {
+    console.log(results);
+    res.status(200)
+    .send(results)
+  })
+  .catch(function(error) {
+    res.status(500)
+    .send(error)
+  });
 });
-//
-// router.post('/addToQueue', function(req, res) {
-//   let playlist_id = req.body.playlist.playlistId;
-//   let user_id = req.body.userId;
-//   let songName = 'spotify:track:{trackId}';
-//     QueueSchema.addToQueue({userId: user_id, playlistId: playlist_id, track: songName })
-//       .then(function(results) {
-//         res.status(200)
-//           .send(results);
-//       })
-//       .catch(function(error) {
-//         res.status(500)
-//           .send(error)
-//       });
-// });
-//
-// router.delete('/removeFromQueue', function(req, res) {
-//   let songId = req.body.playlist.playlistId;
-//   let user_id = req.body.userId;
-//   let songName = 'spotify:track:{trackId}';
-//     QueueSchema.removeFromQueue({user_id: userId, playlistId: playlist_id, track: songName})
-//       .then(function(results) {
-//         res.status(200)
-//           .send(results);
-//       })
-//       .catch(function(error) {
-//         res.status(500)
-//           .send(error)
-//       });
-// });
-//
 
 export default router;
