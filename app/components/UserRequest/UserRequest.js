@@ -11,7 +11,7 @@ export default class UserRequest extends Component {
   render() {
     return (
     	<View style = {styles.button}>
-          <Button large icon={{name:"library-music", size:60}} title="Join Party" onPress={() => this.props.nav.navigate('ClientLoginView')}></Button>
+          <Button large icon={{name:"library-music", size:60, color: 'black'}} title="Join Party" onPress={() => this.props.nav.navigate('ClientLoginView')}></Button>
         </View>
     );
   }

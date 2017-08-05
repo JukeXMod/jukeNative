@@ -21,7 +21,7 @@ export default class ClientLoginView extends React.Component {
   }
 
   checkLogin(queueId) {
-    
+
   }
   NameInput(event) {
    this.setState({userName: event.target.value});
@@ -33,19 +33,16 @@ export default class ClientLoginView extends React.Component {
     return (
       <View>
         <FormLabel><Text h4>Name</Text></FormLabel>
-        <FormInput onChange={this.NameInput} />
+        <FormInput />
         <FormValidationMessage>
-          {"*required"}
+          {'This field is required'}
         </FormValidationMessage>
         <FormLabel><Text h4>Queue Id</Text></FormLabel>
-        <FormInput onChange={this.queueInput} keyboardType={'numeric'}  />
+        <FormInput keyboardType={'numeric'}  />
         <FormValidationMessage>
-          {"*required"}
+          {'This field is required'}
         </FormValidationMessage>
-        <Button buttonStyle={styles.buttonTest} large backgroundColor="#03A9F4" title="Join"
-          onPress={() => this.props.navigation.navigate("ClientQueueView",
-          {queueid:this.queueId, username:this.userName})}>
-        </Button>
+        <Button buttonStyle={styles.buttonTest} large backgroundColor="#03A9F4" title="Join" onPress={() => this.props.navigation.navigate("ClientQueueView")}></Button>
       </View>
     );
   }

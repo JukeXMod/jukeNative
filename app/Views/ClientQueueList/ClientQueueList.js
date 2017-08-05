@@ -21,13 +21,11 @@ export default class ClientQueueList extends React.Component {
     this.state = {
       list: []
     }
-
   }
 
   render() {
     return (
-
-      <List containerStyle={{marginBottom: 20}}>
+      <List containerStyle={{marginBottom: 30}}>
       {
         list.map((l, i) => (
           <ListItem
@@ -38,7 +36,7 @@ export default class ClientQueueList extends React.Component {
           />
         ))
       }
-    </List>
+      </List>
     );
   }
 }
