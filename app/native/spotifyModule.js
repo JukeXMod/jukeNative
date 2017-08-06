@@ -15,7 +15,7 @@ export default class Spotify {
 
   static async setup() {
     try {
-       let complete = await native.setup("32e30aa113a24db9809034cc16b7c018","my-app-auth://spotify");
+       let complete = await native.setup("32e30aa113a24db9809034cc16b7c018","my-app-auth://spotify","code");
       return complete;
     } catch (e) {
       console.error(e);
