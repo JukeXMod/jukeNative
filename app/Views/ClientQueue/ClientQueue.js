@@ -1,14 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
-// import SpotifySoundCloud from '../components/SpotifySoundCloud/SpotifySoundCloud.js';
+
 import Toolbar from '../../components/Toolbar/Toolbar.js';
 import { StackNavigator } from 'react-navigation';
-<<<<<<< HEAD
 import Searchbar from '../../components/Searchbar';
 import { List, ListItem} from 'react-native-elements';
-=======
-import { List, ListItem } from 'react-native-elements';
->>>>>>> addingAndriodSpotify
 
 const list = [
   {
@@ -22,10 +18,6 @@ const list = [
     subtitle: 'Vice Chairman'
   },
 ]
-<<<<<<< HEAD
-=======
-
->>>>>>> addingAndriodSpotify
 
 export default class ClientQueueList extends React.Component {
 
@@ -52,7 +44,6 @@ export default class ClientQueueList extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
         <Toolbar style = {styles.toolbar}>
 
           <View title="QUEUE" style={styles.content}>
@@ -89,21 +80,6 @@ export default class ClientQueueList extends React.Component {
             </List>
           </View>
         </Toolbar>
-=======
-
-        <List containerStyle={{marginBottom: 30}}>
-  {
-    list.map((l, i) => (
-      <ListItem
-        roundAvatar
-        avatar={{uri:l.avatar_url}}
-        key={i}
-        title={l.name}
-      />
-    ))
-  }
-</List>
->>>>>>> addingAndriodSpotify
     );
   }
 }
@@ -117,14 +93,10 @@ export const styles = StyleSheet.create({
     width: width,
     height: height,
     backgroundColor:'transparent',
-<<<<<<< HEAD
+
   }
 });
-=======
-    
-  },
-  
->>>>>>> addingAndriodSpotify
+
 
 // let {width, height} = Dimensions.get('window')
 // export const styles = StyleSheet.create({
