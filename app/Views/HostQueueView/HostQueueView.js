@@ -13,7 +13,7 @@ export default class ClientQueue extends React.Component {
   }
   render() {
     return (
-        <Image style = {styles.image} source={require('../../images/new.jpg')} resizeMode="cover">
+        
 
         <View style = {styles.container}>
         <Toolbar style = {styles.toolbar}>
@@ -41,7 +41,6 @@ export default class ClientQueue extends React.Component {
 
         </Toolbar>
         </View>
-      </Image>
     );
   }
 }
@@ -53,7 +52,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     height: height,
-    backgroundColor:'transparent',
+    backgroundColor: '#1c313a'
+,
 
   },
   image: {

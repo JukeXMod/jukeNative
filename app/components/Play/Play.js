@@ -8,7 +8,7 @@ import styles from "./styles";
 export default class Play extends Component {
   constructor() {
     super();
-    spotify.launchLogin();
+    // spotify.launchLogin();
     this.state = {
       playing: spotify.isPlaying
     };

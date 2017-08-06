@@ -13,7 +13,7 @@ export default class ClientLoginView extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.view}>
         <FormLabel><Text h4>Name</Text></FormLabel>
         <FormInput />
         <FormValidationMessage>
@@ -24,15 +24,18 @@ export default class ClientLoginView extends React.Component {
         <FormValidationMessage>
           {'This field is required'}
         </FormValidationMessage>
-        <Button buttonStyle={styles.buttonTest} large backgroundColor="#03A9F4" title="Join" onPress={() => this.props.navigation.navigate("ClientQueueView")}></Button>
+        <Button buttonStyle={styles.buttonTest} large title="Join" onPress={() => this.props.navigation.navigate("ClientQueueView")}></Button>
       </View>
     );
   }
 }
-
+let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
-
+  view: {
+  backgroundColor: '#1c313a',
+  height: height,
+  },
   buttonTest: {
-      marginTop: 50
+      marginTop: 150,  //This is causing white space on the screen
   }
 });
