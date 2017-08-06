@@ -1,11 +1,13 @@
 import axios from 'axios';
+const HOSTPATH = "http://10.0.2.2:4000"
 export default databaseCalls = {
   loginCreateUser:function(user) {
     return axios.post("/db/createUser", {
       userName:user.userName,
       queueId:user.userId,
-    })
+    });
   },
+
   addSong:function(addSong) {
     return axios.post("/db/createUser", {
       queueId:addSong.queueId,
@@ -14,17 +16,19 @@ export default databaseCalls = {
       artistName:addSong.artistName,
       artistPic:addSong.artistPic,
       trackUri:addSong.trackUri
-    })
+    });
   },
+
   removeSong:function(removeSong) {
     return axios.post("/db/createUser", {
       queueId:addSong.queueId,
       trackUri:addSong.trackUri
-    })
+    });
   },
+
   getSongs:function(queueId) {
-    return axios.post("/db/getqueue", {
-      queueId:addSong.queueId
+    return axios.post(HOSTPATH+"/db/getqueue", {
+      queueId:queueId
     })
   }
 }

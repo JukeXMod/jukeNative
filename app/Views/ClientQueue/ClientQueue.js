@@ -21,6 +21,27 @@ const list = [
 
 export default class ClientQueue extends React.Component {
 
+  constructor(props){
+    super(props);
+    let { userName, queueId, songQueue } = this.props.navigation.state.params.data;
+    this.nowPlayingUpNext = this.nowPlayingUpNext.bind(this);
+    this.state = {
+      queuedSongs: songQueue.playlist,
+      userName: userName,
+      queueId: queueId
+    }
+  }
+
+  nowPlayingUpNext(index){
+    if(index >1) return
+    if(index === 0) {
+      return "Now Playing"
+    }
+    else if (index === 1) {
+      return "Up Next"
+    }
+  }
+
   render() {
     return (
         <Toolbar style = {styles.toolbar}>
@@ -28,12 +49,15 @@ export default class ClientQueue extends React.Component {
           <View title="QUEUE" style={styles.content}>
             <List containerStyle={{marginBottom: 30}}>
             {
-              list.map((l, i) => (
+              this.state.queuedSongs.map((l, i) => (
                 <ListItem
+                  hideChevron = {true}
                   roundAvatar
-                  avatar={{uri:l.avatar_url}}
+                  avatar={{uri:l.artistPic}}
                   key={i}
-                  title={l.name}
+                  title={l.artistName}
+                  subtitle={l.songName}
+                  rightTitle = {this.nowPlayingUpNext(i)}
                 />
               ))
             }

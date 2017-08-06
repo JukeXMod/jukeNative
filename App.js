@@ -8,9 +8,9 @@ import ClientLoginView from './app/Views/ClientLoginView';
 
 const AppNavigator = StackNavigator({
   HostClientView: { screen: HostClient },
-  ClientQueueView: { screen: ClientQueue },
+  ClientQueueView: { screen: ClientQueue, path: ":data" },
   HostQueueView: { screen: HostQueueView },
-  ClientLoginView: { screen: ClientLoginView, path: "people/:queueid/:username", }
+  ClientLoginView: { screen: ClientLoginView }
 },{initialRouteName:"HostClientView"});
 
 export default class App extends React.Component {

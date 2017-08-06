@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, AppRegistry, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
 import UserRequest from "../../components/UserRequest/UserRequest.js";
-import { StackNavigator, TabNavigator } from "react-navigation";
+import { StackNavigator } from "react-navigation";
 import { FormLabel, FormInput, FormValidationMessage, Button, Text } from 'react-native-elements';
+import db from "../../../api/dataBaseApi.js";
 
 export default class ClientLoginView extends React.Component {
   constructor(){
     super();
     this.checkLogin = this.checkLogin.bind(this);
-    this.NameInput = this.NameInput.bind(this);
+    this.nameInput = this.nameInput.bind(this);
     this.queueInput = this.queueInput.bind(this);
     this.state = {
       userName: "",
@@ -20,28 +21,47 @@ export default class ClientLoginView extends React.Component {
   }
 
   checkLogin(queueId) {
+    db.getSongs(queueId)
+    .then(function(result) {
+      if(!result.data){
+        console.warn("Please check your queueID");
+      }
+      else {
 
+        this.props.navigation.navigate("ClientQueueView", {
+            data:{
+              userName:this.state.userName,
+              queueId:this.state.queueId,
+              songQueue: result.data
+            }
+          }
+        );
+      }
+    }.bind(this))
+    .catch(function(e) {
+      console.warn(e);
+    });
   }
-  NameInput(event) {
-   this.setState({userName: event.target.value});
+  nameInput(text) {
+   this.setState({userName: text});
   }
-  queueInput(event){
-   this.setState({queueId: event.target.value});
+  queueInput(text) {
+   this.setState({queueId: text});
   }
   render() {
     return (
       <View>
         <FormLabel><Text h4>Name</Text></FormLabel>
-        <FormInput />
+        <FormInput onChangeText={this.nameInput} />
         <FormValidationMessage>
           {'This field is required'}
         </FormValidationMessage>
         <FormLabel><Text h4>Queue Id</Text></FormLabel>
-        <FormInput keyboardType={'numeric'}  />
+        <FormInput onChangeText={this.queueInput} keyboardType={'numeric'}  />
         <FormValidationMessage>
           {'This field is required'}
         </FormValidationMessage>
-        <Button buttonStyle={styles.buttonTest} large backgroundColor="#03A9F4" title="Join" onPress={() => this.props.navigation.navigate("ClientQueueView")}></Button>
+        <Button buttonStyle={styles.buttonTest} large backgroundColor="#03A9F4" title="Join" onPress={() =>this.checkLogin(this.state.queueId)}></Button>
       </View>
     );
   }
