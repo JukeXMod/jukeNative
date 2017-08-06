@@ -19,7 +19,7 @@ const list = [
   },
 ]
 
-export default class ClientQueue extends React.Component {
+export default class ClientQueueList extends React.Component {
 
   constructor(props){
     super(props);
@@ -95,31 +95,3 @@ export const styles = StyleSheet.create({
     backgroundColor:'transparent',
   }
 });
-
-// let {width, height} = Dimensions.get('window')
-// export const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'flex-start',
-//     alignItems: 'center',
-//     width: width,
-//     height: height,
-//     backgroundColor:'transparent',
-//
-//   },
-//   image: {
-//     height: height,
-//     width: width,
-//   },
-//
-//   list: {
-//     backgroundColor: 'white',
-//     marginTop: 20,
-//   },
-//   text: {
-//     backgroundColor: 'white',
-//     marginTop: 20,
-//   }
-//
-//
-// });

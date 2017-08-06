@@ -9,8 +9,8 @@ export default class Host extends Component {
 
   render() {
     return (
-      <View style={styles.button}>
-        <Button large icon={{name:"speaker-group", size:60}} title="Host Party" onPress={() => this.props.nav.navigate('HostQueueView')}></Button>
+      <View style={styles.view}>
+        <Button stlye={styles.button} large icon={{name:"speaker", size:60, color: 'black'}} title="Host Party" onPress={() => this.props.nav.navigate('HostQueueView')}></Button>
       </View>
     );
   }
@@ -18,8 +18,12 @@ export default class Host extends Component {
 
 let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
-  button: {
+  view: {
     width:width,
-    paddingBottom:50
+    paddingBottom:50,
+  },
+  button: {
+    backgroundColor: 'red',
+
   }
 });

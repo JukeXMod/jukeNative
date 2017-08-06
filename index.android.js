@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 
+
 export default class react_native_spotify_ios_sdk_boilerplate extends Component {
   render() {
     return (

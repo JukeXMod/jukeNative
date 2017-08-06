@@ -16,7 +16,8 @@ const AppNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <AppNavigator style = {styles.navigator} ref={nav => { this.navigator = nav; }} />
+      <AppNavigator ref={nav => { this.navigator = nav; }} />
+
     );
   }
 }

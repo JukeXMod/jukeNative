@@ -66,10 +66,13 @@ export default class ClientLoginView extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-
+let {width, height} = Dimensions.get('window')
+export const styles = StyleSheet.create({
+  view: {
+  backgroundColor: '#1c313a',
+  height: height,
+  },
   buttonTest: {
-      marginTop: 50
+      marginTop: 150,  //This is causing white space on the screen
   }
 });
