@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, AppRegistry, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
-import Host from "../../components/Host/Host.js";
 import UserRequest from "../../components/UserRequest/UserRequest.js";
-import { StackNavigator } from "react-navigation";
-import { FormLabel, FormInput, FormValidationMessage, Button, Text } from 'react-native-elements'
+import { StackNavigator, TabNavigator } from "react-navigation";
+import { FormLabel, FormInput, FormValidationMessage, Button, Text } from 'react-native-elements';
 
 export default class ClientLoginView extends React.Component {
   constructor(){
@@ -48,7 +47,7 @@ export default class ClientLoginView extends React.Component {
   }
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
   buttonTest: {
       marginTop: 50
