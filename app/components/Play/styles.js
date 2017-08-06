@@ -8,10 +8,10 @@ export default styles = StyleSheet.create({
     width:width,
     height:85,
     paddingTop:20,
-    backgroundColor: "skyblue",
+    backgroundColor: "#bdbdbd",
     paddingLeft:80,
     paddingRight:40,
-    marginBottom: -325,
+    marginBottom: -490,
   },
   viewStyle: {
     flex: 1,

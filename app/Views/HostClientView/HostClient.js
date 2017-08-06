@@ -13,24 +13,25 @@ export default class HostClient extends React.Component {
   render() {
 
     return (
-      <View style={styles.buttonTest}>
+      <View style={styles.view}>
           <Host nav={this.props.navigation}/>
           <UserRequest nav={this.props.navigation}/>
       </View>
     );
   }
 }
-
+let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
   // container: {
   //   flex: 1,
   //   marginRight:400
   // },
-  buttonTest: {
+  view: {
     flex: 1,
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: 50
+      backgroundColor: '#1c313a',
+      height: height,
   }
 });
