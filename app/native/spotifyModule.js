@@ -87,7 +87,7 @@ export default class Spotify {
 
   static async nextTrack(track) {
     try {
-      await native.playUri(track);
+      await native.getNextTrack(track);
     } catch (e) {
       console.error(e);
     }

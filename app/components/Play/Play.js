@@ -11,6 +11,9 @@ export default class Play extends Component {
     spotify.launchLogin();
     this.playSong = this.playSong.bind(this);
     this.nextSong = this.nextSong.bind(this);
+    this.state = {
+      nextButton: this.props.songQueue.length < 0 ?  true : false
+    }
   }
   playSong(nextSong=false) {
     spotify.isPlaying()
@@ -34,7 +37,11 @@ export default class Play extends Component {
   }
   nextSong() {
      this.props.nextEvent();
-     if(this.props.songQueue.length <= 0) spotify.pauseResume();
+     if(this.props.songQueue.length <= 0) {
+       this.setState({nextButton:true});
+       spotify.pauseResume();
+
+     }
      this.playSong(true)
   }
   render() {
@@ -54,7 +61,7 @@ export default class Play extends Component {
              }
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.nextSong}>
+          <TouchableOpacity disabled={this.state.nextButton} onPress={this.nextSong}>
             <Image
               style={styles.next}
               source={require("../../images/nextButton.png")}
