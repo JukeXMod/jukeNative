@@ -18,7 +18,6 @@ export default class App extends React.Component {
   render() {
     return (
       <AppNavigator ref={nav => { this.navigator = nav; }} />
-      
     );
   }
 }

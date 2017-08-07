@@ -19,12 +19,12 @@ const list = [
 ]
 
 
-export default class ClientQueueList extends React.Component {
+export default class ClientQueue extends React.Component {
 
   render() {
     return (
-
-        <List containerStyle={{marginBottom: 30}}>
+      <View style={styles.view}>
+        <List style={styles.list} containerStyle={{marginBottom: 30}}>
   {
     list.map((l, i) => (
       <ListItem
@@ -32,24 +32,24 @@ export default class ClientQueueList extends React.Component {
         avatar={{uri:l.avatar_url}}
         key={i}
         title={l.name}
+
       />
     ))
   }
 </List>
+</View>
     );
   }
 }
 let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: width,
+  view: {
+    backgroundColor: '#1c313a',
     height: height,
-    backgroundColor:'transparent',
+    width: width,
+  },
+  list: {   
+    backgroundColor:'#bdbdbd',
     
   },
-  
-
 });

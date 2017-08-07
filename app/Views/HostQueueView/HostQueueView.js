@@ -2,15 +2,27 @@ import React from 'react';
 import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
 // import SpotifySoundCloud from '../components/SpotifySoundCloud/SpotifySoundCloud.js';
 import Toolbar from '../../components/Toolbar/Toolbar.js';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, List, ListItem } from 'react-navigation';
 import Searchbar from '../../components/Searchbar';
 import Play from '../../components/Play';
 
-export default class ClientQueue extends React.Component {
-  constructor() {
-    super();
 
-  }
+const list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+];
+
+export default class HostQueueView extends React.Component {
+
+ 
   render() {
     return (
         
@@ -18,25 +30,15 @@ export default class ClientQueue extends React.Component {
         <View style = {styles.container}>
         <Toolbar style = {styles.toolbar}>
 
-          <View title="QUEUE" style={styles.content}>
+          <Text title="QUEUE" style={styles.content}> </Text>
+          
 
-            <FlatList style = {styles.list}
-          // data={[
-          //   {key: 'Led'},
-          //   {key: 'PLACEHOLDERR'},
-          //   {key: 'PLACEHOLDERRR'},
-          //   {key: 'PLACEHOLDERRRR'},
-          //   {key: 'PLACEHOLDERRRRR klasdjfkl;adsjfkl;sadjflsajlk;dfl;sadjfkljs;la'},
-          //   {key: 'ABCj lksdfjas;dlkjflksadjfldksjl;kfjla;sjdfljsdkl;j'},
-          //   {key: 'DEF'},
-          //   {key: 'EFG'},
-          // ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-        />
+
+            
         <Play style ={styles.play} />
-          </View>
 
           <View title="Completed" style={styles.content}>
+          
           </View>
 
         </Toolbar>
@@ -62,8 +64,9 @@ export const styles = StyleSheet.create({
   },
 
   list: {
-    backgroundColor: 'white',
     marginTop: 20,
+    backgroundColor:'#bdbdbd',
+
   },
   text: {
     backgroundColor: 'white',
@@ -74,5 +77,8 @@ export const styles = StyleSheet.create({
   },
   play:{
     top: 150,
-  }
+  },
+  content: {
+    width: width,
+  },
 });

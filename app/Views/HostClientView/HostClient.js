@@ -14,6 +14,7 @@ export default class HostClient extends React.Component {
 
     return (
       <View style={styles.view}>
+      <Image style={styles.jukeboxHero} source={require('../../images/jukeboxHero.png')}/>
           <Host nav={this.props.navigation}/>
           <UserRequest nav={this.props.navigation}/>
       </View>
@@ -33,5 +34,10 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#1c313a',
       height: height,
+  },
+  jukeboxHero: {
+    bottom: 90,
+    width: 300,
+    height: 120
   }
 });
