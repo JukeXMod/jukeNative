@@ -5,45 +5,106 @@ import Toolbar from '../../components/Toolbar/Toolbar.js';
 import { StackNavigator } from 'react-navigation';
 import Searchbar from '../../components/Searchbar';
 import Play from '../../components/Play';
+import { List, ListItem} from 'react-native-elements';
+import db from "../../../api/dataBaseApi.js";
 
-export default class ClientQueue extends React.Component {
-  constructor() {
-    super();
+const list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+]
 
+export default class HostQueueView extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.nowPlayingUpNext = this.nowPlayingUpNext.bind(this);
+    this.getQueue = this.getQueue.bind(this);
+    this.nextSongInQueue = this.nextSongInQueue.bind(this);
+    this.state = {
+      queuedSongs: [],
+      userName: "",
+      queueId: -1
+    }
+    this.getQueue(2) // will need to remove hardcode atm
   }
+  getQueue(queueId) {
+    db.getSongs(queueId)
+    .then(function(result) {
+      this.setState({queuedSongs: result.data.playlist});
+    }.bind(this))
+    .catch(function(e) {
+      console.warn(e);
+    });
+  }
+
+  nowPlayingUpNext(index){
+    if(index >1) return
+    if(index === 0) {
+      return "Now Playing"
+    }
+    else if (index === 1) {
+      return "Up Next"
+    }
+  }
+
+  nextSongInQueue() {
+    if(this.state.queuedSongs.length >= 0) {
+      let queue = this.state.queuedSongs;
+      this.setState({queuedSongs:queue});
+    }
+  }
+
   render() {
     return (
-        
-
-        <View style = {styles.container}>
         <Toolbar style = {styles.toolbar}>
 
           <View title="QUEUE" style={styles.content}>
-
-            <FlatList style = {styles.list}
-          // data={[
-          //   {key: 'Led'},
-          //   {key: 'PLACEHOLDERR'},
-          //   {key: 'PLACEHOLDERRR'},
-          //   {key: 'PLACEHOLDERRRR'},
-          //   {key: 'PLACEHOLDERRRRR klasdjfkl;adsjfkl;sadjflsajlk;dfl;sadjfkljs;la'},
-          //   {key: 'ABCj lksdfjas;dlkjflksadjfldksjl;kfjla;sjdfljsdkl;j'},
-          //   {key: 'DEF'},
-          //   {key: 'EFG'},
-          // ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-        />
-        <Play style ={styles.play} />
+            <Play songQueue= {this.state.queuedSongs} nextEvent={this.nextSongInQueue} />
+            <List containerStyle={{marginBottom: 30}}>
+            {
+              this.state.queuedSongs.map((l, i) => (
+                <ListItem
+                  hideChevron = {true}
+                  roundAvatar
+                  avatar={{uri:l.artistPic}}
+                  key={i}
+                  title={l.artistName}
+                  subtitle={l.songName}
+                  rightTitle = {this.nowPlayingUpNext(i)}
+                />
+              ))
+            }
+            </List>
           </View>
 
-          <View title="Completed" style={styles.content}>
+          <View title="ADD SONG" style={styles.content}>
+            <Searchbar />
+            <List containerStyle={{marginBottom: 30}}>
+            {
+              list.map((l, i) => (
+                <ListItem
+                  roundAvatar
+                  avatar={{uri:l.avatar_url}}
+                  key={i}
+                  title={l.name}
+                />
+              ))
+            }
+            </List>
           </View>
-
         </Toolbar>
-        </View>
     );
   }
 }
+
 let {width, height} = Dimensions.get('window')
 export const styles = StyleSheet.create({
   container: {
@@ -52,27 +113,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     height: height,
-    backgroundColor: '#1c313a'
-,
-
-  },
-  image: {
-    height: height,
-    width: width,
-  },
-
-  list: {
-    backgroundColor: 'white',
-    marginTop: 20,
-  },
-  text: {
-    backgroundColor: 'white',
-    marginTop: 20,
-  },
-  toolbar:{
-    backgroundColor:'transparent'
-  },
-  play:{
-    top: 150,
+    backgroundColor:'transparent',
   }
 });

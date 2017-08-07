@@ -1,4 +1,5 @@
 import native from 'react-native-spotify-sdk';
+import { AsyncStorage } from 'react-native';
 
 export default class Spotify {
   constructor(){
@@ -10,13 +11,20 @@ export default class Spotify {
     this.queue = this.queue.bind(this);
     this.setNextTrack = this.setNextTrack.bind(this);
     this.getNextTrack = this.getNextTrack.bind(this);
-
   }
 
-  static async setup() {
+  static async setup(codeOrToken) {
     try {
-       let complete = await native.setup("32e30aa113a24db9809034cc16b7c018","my-app-auth://spotify","code");
+       let complete = await native.setup("32e30aa113a24db9809034cc16b7c018","my-app-auth://spotify",codeOrToken);
       return complete;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  static async isPlaying() {
+    try {
+      return await native.isPlaying();
     } catch (e) {
       console.error(e);
     }
@@ -32,16 +40,13 @@ export default class Spotify {
 
   static async launchLogin() {
     try {
-      let complete = await this.setup();
-      console.warn(complete);
+      let complete = await this.setup("TOKEN");
       if(complete === "Success") {
-        let { token, code } = await native.launchLogin();
-        console.warn("code"+code);
+        let { token } = await native.launchLogin();
         if(token) {
-          let complete = await native.setAccessToken(token);
+          await native.setAccessToken(token);
           try {
-            await AsyncStorage.setItem("code",code);
-            await AsyncStorage.setItem("token",token);
+            AsyncStorage.setItem("token",token);
           } catch (error) {
             console.warn(error);
           }
@@ -80,21 +85,9 @@ export default class Spotify {
     }
   }
 
-  static async getNextTrack() {
+  static async nextTrack(track) {
     try {
-      songsList = [
-        "spotify:track:5ELRkzdzz0HvGpMDlfZHkV",
-        "spotify:track:0Ph6L4l8dYUuXFmb71Ajnd",
-        "spotify:track:2HNZxbvFvasRtlOJ9M6DgR",
-        "spotify:track:6N5DRCQUSXT1qQqmqsO92B",
-        "spotify:track:0f37VQs969vZUL4gVfHRV9",
-        "spotify:track:4fK6E2UywZTJIa5kWnCD6x",
-        "spotify:track:78ZzF9pK3foniEnK64XzX5"
-      ];
-       if(songsList.length > 0) {
-         let song = songsList.pop();
-         await native.playUri(song);
-       }
+      await native.playUri(track);
     } catch (e) {
       console.error(e);
     }
@@ -110,22 +103,9 @@ export default class Spotify {
 
   static async whenSongIsFinish() {
     try {
-      let songFinished = await native.whenSongIsFinish();
+      return await native.whenSongIsFinish();
     } catch (e) {
       console.error(e);
     }
   }
-
-  static async isPlaying() {
-    try {
-      let playState =  await native.isPlaying();
-      if(playState === "failed") {
-        return false;
-      }
-      return true;
-    } catch (e) {
-      console.warn(e);
-    }
-  }
-
 }
