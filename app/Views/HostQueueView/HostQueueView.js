@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, Text, AppRegistry, AsyncStorage, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
 // import SpotifySoundCloud from '../components/SpotifySoundCloud/SpotifySoundCloud.js';
 import Toolbar from '../../components/Toolbar/Toolbar.js';
 import { StackNavigator } from 'react-navigation';
 import Searchbar from '../../components/Searchbar';
 import Play from '../../components/Play';
 import { List, ListItem} from 'react-native-elements';
+import spotify from "../../native/spotifyModule";
 import db from "../../../api/dataBaseApi.js";
 
 const list = [
@@ -28,23 +29,37 @@ export default class HostQueueView extends React.Component {
     this.nowPlayingUpNext = this.nowPlayingUpNext.bind(this);
     this.getQueue = this.getQueue.bind(this);
     this.nextSongInQueue = this.nextSongInQueue.bind(this);
+    // this.checkForSong = this.checkForSong.bind(this);
     this.state = {
       queuedSongs: [],
       userName: "",
       queueId: -1
     }
     this.getQueue(2) // will need to remove hardcode atm
-  }
-  getQueue(queueId) {
-    db.getSongs(queueId)
-    .then(function(result) {
-      this.setState({queuedSongs: result.data.playlist});
-    }.bind(this))
-    .catch(function(e) {
-      console.warn(e);
-    });
+    // this.checkForSong() // will need to find a better answer;
   }
 
+
+  getQueue(queueId) {
+     let songResults = [];
+      db.getSongs(queueId)
+      .then(function(result) {
+         songResults = result.data.playlist;
+         this.setState({queuedSongs:songResults });
+         let forJavaArray = Array.from(songResults);
+         spotify.addMultiSong(forJavaArray)
+         .then(function(){
+           this.setState({queuedSongs:songResults });
+         }.bind(this))
+      }.bind(this))
+      .catch(function(e) {
+        console.warn(e);
+      });
+  }
+  // checkForSong() {
+  //      setInterval(function() {this.getQueue(2)}.bind(this),4000);
+  // }
+  //
   nowPlayingUpNext(index){
     if(index >1) return
     if(index === 0) {
@@ -55,9 +70,8 @@ export default class HostQueueView extends React.Component {
     }
   }
 
-  nextSongInQueue() {
+  nextSongInQueue(queue) {
     if(this.state.queuedSongs.length >= 0) {
-      let queue = this.state.queuedSongs;
       this.setState({queuedSongs:queue});
     }
   }

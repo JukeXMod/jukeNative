@@ -1,14 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, AppRegistry, View, Image, TouchableOpacity, FlatList, Button, Dimensions } from 'react-native';
+import { StyleSheet, Text, AppRegistry, AsyncStorage, View, Image, TouchableOpacity, FlatList, Button, Dimensions } from 'react-native';
 import Host from '../../components/Host/Host.js';
 import UserRequest from '../../components/UserRequest/UserRequest.js';
 import { StackNavigator } from 'react-navigation';
+import appKeyStore from "../../config/storeKeys.js"
 
 export default class HostClient extends React.Component {
-
+  constructor(){
+    super();
+    this.setHasOpenedHost = this.setHasOpenedHost.bind(this);
+    this.setHasOpenedHost();
+  }
   static navigationOptions = {
    header:null
  }
+  setHasOpenedHost() {
+    appKeyStore.saveKey("hostViewInit","true")
+    .catch(function(error) {
+      console.warn(error);
+    });
+  }
 
   render() {
 

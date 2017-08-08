@@ -11,38 +11,41 @@ export default class Play extends Component {
     spotify.launchLogin();
     this.playSong = this.playSong.bind(this);
     this.nextSong = this.nextSong.bind(this);
-    this.state = {
-      nextButton: this.props.songQueue.length < 0 ?  true : false
-    }
   }
-  playSong(nextSong=false) {
-    spotify.isPlaying()
+  playSong() {
+    spotify.startQueue()
     .then(function(result) {
-      if(!result.isPlaying && result.postionMS <=0 || nextSong) {
-          if(this.props.songQueue.length > 0) {
-            let track = this.props.songQueue.splice(0,1);
-            spotify.playUri(track[0].trackUri);
-          }
-      }
-      else {
+      if(result==="false"){
         spotify.pauseResume();
       }
-    }.bind(this))
+    })
     .catch(function(e){
       console.warn(e);
-    })
-  }
-  pauseResumeSong(){
+    });
 
+    // spotify.isPlaying()
+    // .then(function(result) {
+    //   if(!result.isPlaying && result.postionMS <=0) {
+    //       if(this.props.songQueue.length > 0) {
+    //         let track = this.props.songQueue.splice(0,1);
+    //         spotify.playUri(track[0].trackUri);
+    //       }
+    //   }
+    //   else {
+    //     spotify.pauseResume();
+    //   }
+    // }.bind(this))
+    // .catch(function(e){
+    //   console.warn(e);
+    // })
   }
+
   nextSong() {
-     this.props.nextEvent();
-     if(this.props.songQueue.length <= 0) {
-       this.setState({nextButton:true});
-       spotify.pauseResume();
-
-     }
-     this.playSong(true)
+    spotify.skipToNext()
+    .then(function(){
+      this.props.songQueue.splice(0,1)
+      this.props.nextEvent(this.props.songQueue);
+    }.bind(this))
   }
   render() {
     return (
@@ -61,7 +64,7 @@ export default class Play extends Component {
              }
             />
           </TouchableOpacity>
-          <TouchableOpacity disabled={this.state.nextButton} onPress={this.nextSong}>
+          <TouchableOpacity onPress={this.nextSong}>
             <Image
               style={styles.next}
               source={require("../../images/nextButton.png")}

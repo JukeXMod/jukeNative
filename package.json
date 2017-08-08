@@ -8,9 +8,6 @@
     "server": "nodemon server.js --exec babel-node --presets es2015,stage-2"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "mongoose": "^4.11.5",
-    "mongoose-auto-increment": "^5.0.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
@@ -25,7 +22,8 @@
     "react-native-video": "^1.2.0",
     "react-navigation": "^1.0.0-beta.11",
     "rnpm": "^1.9.0",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.24.1",

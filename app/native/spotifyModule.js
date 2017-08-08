@@ -10,7 +10,7 @@ export default class Spotify {
     this.isPlaying = this.isPlaying.bind(this);
     this.queue = this.queue.bind(this);
     this.setNextTrack = this.setNextTrack.bind(this);
-    this.getNextTrack = this.getNextTrack.bind(this);
+    this.skipToNext = this.skipToNext.bind(this);
   }
 
   static async setup(codeOrToken) {
@@ -70,24 +70,9 @@ export default class Spotify {
       console.error(e);
     }
   }
-
-  static async queue(songUri) {
+  static async skipToNext(track) {
     try {
-        let complete = await native.queue(songUri);
-        if(complete === "Success") {
-          console.log(complete);
-       }
-       else{
-         console.warn("Error occured queueing song");
-       }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  static async nextTrack(track) {
-    try {
-      await native.getNextTrack(track);
+      await native.skipToNext();
     } catch (e) {
       console.error(e);
     }
@@ -96,6 +81,23 @@ export default class Spotify {
   static async setNextTrack(addUri) {
     try {
       await native.setNextTrack(addUri);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  static async startQueue() {
+    try {
+      return await native.startQueue();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  static async addMultiSong(songArray) {
+    //clean data here to be passed
+    try {
+      await native.addMultiSong(songArray);
     } catch (e) {
       console.error(e);
     }
