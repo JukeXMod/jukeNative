@@ -38,17 +38,20 @@ export default class Play extends Component {
 
   nextSong() {
     spotify.skipToNext()
-    .then(function(){
+    .then(function() {
       this.props.songQueue.splice(0,1)
-      let nowPlaying = this.props.songQueue[0];
-      this.setState(
-        {
-          currentArtist:nowPlaying.artistName,
-          currentSong:nowPlaying.songName
-        }
-     );
-      this.props.nextEvent(this.props.songQueue);
-    }.bind(this))
+      if(this.props.songQueue.length > 0) {
+        console.warn("asdfasdfs");
+        let nowPlaying = this.props.songQueue[0];
+        this.setState(
+          {
+            currentArtist:nowPlaying.artistName,
+            currentSong:nowPlaying.songName
+          }
+        );
+      }
+        this.props.nextEvent(this.props.songQueue);
+      }.bind(this))
   }
 
   render() {

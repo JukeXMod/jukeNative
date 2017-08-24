@@ -69,12 +69,15 @@ export default class HostQueueView extends React.Component {
   }
 
   nextSongInQueue(queue) {
-    db.removeSong({})
+    db.removeSong(2)
     .then(function() {
       if(this.state.queuedSongs.length >= 0) {
         this.setState({queuedSongs:queue});
       }
-    });
+    }.bind(this))
+    .catch(function(e){
+      console.warn(e);
+    })
   }
 
   render() {

@@ -19,10 +19,9 @@ export default databaseCalls = {
     });
   },
 
-  removeSong:function(removeSong) {
+  removeSong:function(queueId) {
     return axios.post(HOSTPATH+"/db/removesong", {
-      queueId:removeSong.queueId,
-      trackUri:removeSong.trackUri
+      queueId:queueId,
     });
   },
 
