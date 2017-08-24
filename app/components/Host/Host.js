@@ -10,7 +10,7 @@ export default class Host extends Component {
   render() {
     return (
       <View style={styles.view}>
-        <Button large icon={{name:"speaker", size:60, color: 'black'}} title="Host Party" onPress={() => this.props.nav.navigate('HostQueueView')}></Button>
+        <Button large icon={{name:"speaker", size:60, color: 'black'}} title="Host Party" onPress={() => this.props.nav.navigate('HostLoginView')}></Button>
       </View>
     );
   }

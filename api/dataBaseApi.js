@@ -20,9 +20,9 @@ export default databaseCalls = {
   },
 
   removeSong:function(removeSong) {
-    return axios.post("/db/createUser", {
-      queueId:addSong.queueId,
-      trackUri:addSong.trackUri
+    return axios.post(HOSTPATH+"/db/removesong", {
+      queueId:removeSong.queueId,
+      trackUri:removeSong.trackUri
     });
   },
 

@@ -23,7 +23,7 @@ const list = [
 
 export default class HostQueueView extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.nowPlayingUpNext = this.nowPlayingUpNext.bind(this);
     this.getQueue = this.getQueue.bind(this);
@@ -31,7 +31,6 @@ export default class HostQueueView extends React.Component {
     this.checkForSong = this.checkForSong.bind(this);
     this.state = {
       queuedSongs: [],
-      userName: "",
       queueId: -1
     }
     this.getQueue(2) // will need to remove hardcode atm
@@ -70,9 +69,12 @@ export default class HostQueueView extends React.Component {
   }
 
   nextSongInQueue(queue) {
-    if(this.state.queuedSongs.length >= 0) {
-      this.setState({queuedSongs:queue});
-    }
+    db.removeSong({})
+    .then(function() {
+      if(this.state.queuedSongs.length >= 0) {
+        this.setState({queuedSongs:queue});
+      }
+    });
   }
 
   render() {
