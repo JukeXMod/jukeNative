@@ -9,51 +9,55 @@ export default class Play extends Component {
   constructor(props) {
     super(props);
     spotify.launchLogin();
+    this.state = {
+      currentArtist:"",
+      currentSong:""
+    };
     this.playSong = this.playSong.bind(this);
     this.nextSong = this.nextSong.bind(this);
   }
+
   playSong() {
     spotify.startQueue()
     .then(function(result) {
-      if(result==="false"){
+      if(result === "false"){
         spotify.pauseResume();
       }
-    })
+      let nowPlaying = this.props.songQueue[0];
+      this.setState(
+        {
+          currentArtist:nowPlaying.artistName,
+          currentSong:nowPlaying.songName
+        }
+     );
+    }.bind(this))
     .catch(function(e){
       console.warn(e);
     });
-
-    // spotify.isPlaying()
-    // .then(function(result) {
-    //   if(!result.isPlaying && result.postionMS <=0) {
-    //       if(this.props.songQueue.length > 0) {
-    //         let track = this.props.songQueue.splice(0,1);
-    //         spotify.playUri(track[0].trackUri);
-    //       }
-    //   }
-    //   else {
-    //     spotify.pauseResume();
-    //   }
-    // }.bind(this))
-    // .catch(function(e){
-    //   console.warn(e);
-    // })
   }
 
   nextSong() {
     spotify.skipToNext()
     .then(function(){
       this.props.songQueue.splice(0,1)
+      let nowPlaying = this.props.songQueue[0];
+      this.setState(
+        {
+          currentArtist:nowPlaying.artistName,
+          currentSong:nowPlaying.songName
+        }
+     );
       this.props.nextEvent(this.props.songQueue);
     }.bind(this))
   }
+
   render() {
     return (
       <View style={styles.viewStyle}>
         <View style={styles.playBox}>
-          <Text style={styles.names}>The Beatles</Text>
+          <Text style={styles.names}>{this.state.currentArtist}</Text>
           <View style={styles.song}>
-          <Text style={styles.names}>Let it be</Text>
+          <Text style={styles.names}>{this.state.currentSong}</Text>
         </View>
           <TouchableOpacity onPress={this.playSong}>
             <Image

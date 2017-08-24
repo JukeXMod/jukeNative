@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, AppRegistry, AsyncStorage, View, Image, TouchableOpacity, FlatList, Dimensions } from 'react-native';
-// import SpotifySoundCloud from '../components/SpotifySoundCloud/SpotifySoundCloud.js';
 import Toolbar from '../../components/Toolbar/Toolbar.js';
 import { StackNavigator } from 'react-navigation';
 import Searchbar from '../../components/Searchbar';
@@ -29,7 +28,7 @@ export default class HostQueueView extends React.Component {
     this.nowPlayingUpNext = this.nowPlayingUpNext.bind(this);
     this.getQueue = this.getQueue.bind(this);
     this.nextSongInQueue = this.nextSongInQueue.bind(this);
-    // this.checkForSong = this.checkForSong.bind(this);
+    this.checkForSong = this.checkForSong.bind(this);
     this.state = {
       queuedSongs: [],
       userName: "",
@@ -38,7 +37,6 @@ export default class HostQueueView extends React.Component {
     this.getQueue(2) // will need to remove hardcode atm
     // this.checkForSong() // will need to find a better answer;
   }
-
 
   getQueue(queueId) {
      let songResults = [];
@@ -56,10 +54,11 @@ export default class HostQueueView extends React.Component {
         console.warn(e);
       });
   }
-  // checkForSong() {
-  //      setInterval(function() {this.getQueue(2)}.bind(this),4000);
-  // }
-  //
+
+  checkForSong() {
+       setInterval(function() {this.getQueue(2)}.bind(this),4000);
+  }
+
   nowPlayingUpNext(index){
     if(index >1) return
     if(index === 0) {
